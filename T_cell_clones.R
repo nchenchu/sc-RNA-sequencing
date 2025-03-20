@@ -1,0 +1,61 @@
+library(Seurat)
+library(dplyr)
+library(ggplot2)
+library(patchwork)
+
+# Define Output Directory
+output_dir <- "/Users/bigley/Library/CloudStorage/Box-Box/Bigley Lab/Navyasree Chenchu/Chenchu Projects/Chenchu MRV D0 R848/Clones"
+
+# Create directory if it doesn't exist
+if (!dir.exists(output_dir)) {
+  dir.create(output_dir, recursive = TRUE)
+}
+print(paste("Files will be saved in:", output_dir))
+
+# Define the correct path to your RDS file
+seurat_obj <- readRDS("/Users/bigley/Library/CloudStorage/Box-Box/Bigley Lab/Navyasree Chenchu/Chenchu Projects/Chenchu MRV D0 R848/MRV R848 scRNAseq cellcycle_corrected.rds")
+
+# Verify if the object is loaded
+print(seurat_obj) 
+
+# Set SCT as active assay
+DefaultAssay(seurat_obj) <- "SCT"
+
+
+# Subset T cell clusters
+t_cell_clusters <- c(2, 6, 15, 17, 21)
+t_cells <- subset(seurat_obj, idents = t_cell_clusters)
+
+
+# Ensure SCT is the active assay
+DefaultAssay(t_cells) <- "SCT"
+
+# Scale the data before PCA
+t_cells <- ScaleData(t_cells, verbose = TRUE)
+
+# Perform PCA
+t_cells <- RunPCA(t_cells, features = VariableFeatures(object = t_cells))
+
+# Compute neighbors and clustering
+t_cells <- FindNeighbors(t_cells, dims = 1:20, graph.name = "SCT_nn")
+t_cells <- FindClusters(t_cells, graph.name = "SCT_nn", resolution = 0.5)
+
+# Run UMAP for visualization
+t_cells <- RunUMAP(t_cells, dims = 1:20)
+
+# Save the subclustered Seurat object
+t_cell_rds <- file.path(output_dir, "T_Cell_Subclusters.rds")
+saveRDS(t_cells, t_cell_rds)
+
+print(paste("T Cell Subclusters saved at:", t_cell_rds))
+
+
+DimPlot(t_cells, reduction = "umap", label = TRUE, group.by = "seurat_clusters")
+# Define plot save path
+t_cell_umap_path <- file.path(output_dir, "T_Cell_Subclusters_UMAP.png")
+
+# Save the plot
+ggsave(t_cell_umap_path, plot = DimPlot(t_cells, reduction = "umap", label = TRUE, group.by = "seurat_clusters"), width = 8, height = 6)
+
+# Print confirmation
+print(paste("T Cell UMAP saved at:", t_cell_umap_path))
