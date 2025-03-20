@@ -4,7 +4,7 @@ library(ggplot2)
 library(patchwork)
 
 # Define Output Directory
-output_dir <- "/Users/bigley/Library/CloudStorage/Box-Box/Bigley Lab/Navyasree Chenchu/Chenchu Projects/Chenchu MRV D0 R848/Clones"
+output_dir <- "file_path"
 
 # Create directory if it doesn't exist
 if (!dir.exists(output_dir)) {
@@ -13,7 +13,7 @@ if (!dir.exists(output_dir)) {
 print(paste("Files will be saved in:", output_dir))
 
 # Define the correct path to your RDS file
-seurat_obj <- readRDS("/Users/bigley/Library/CloudStorage/Box-Box/Bigley Lab/Navyasree Chenchu/Chenchu Projects/Chenchu MRV D0 R848/MRV R848 scRNAseq cellcycle_corrected.rds")
+seurat_obj <- readRDS("file_path")
 
 # Verify if the object is loaded
 print(seurat_obj) 
