@@ -9,7 +9,7 @@ library(ineq)
 library(reshape2)
 
 # Define Local Directory for Saving Files
-output_dir <- "/Users/navyasreechenchu/Library/CloudStorage/Box-Box/Bigley Lab/Navyasree Chenchu/Chenchu Projects/Results/"
+output_dir <- "file_path"
 
 # Create the directory if it doesn't exist
 if (!dir.exists(output_dir)) {
@@ -17,10 +17,10 @@ if (!dir.exists(output_dir)) {
 }
 
 # Load T Cell Data
-T_scd <- readRDS("/Users/navyasreechenchu/Library/CloudStorage/Box-Box/Bigley Lab/Navyasree Chenchu/Chenchu Projects/Chenchu MRV D0 R848/MRV_T_Cells_Annotated.rds")
+T_scd <- readRDS("file_path")
 
 # Load B Cell Data
-B_scd <- readRDS("/Users/navyasreechenchu/Library/CloudStorage/Box-Box/Bigley Lab/Navyasree Chenchu/Chenchu Projects/Chenchu MRV D0 R848/MRV_B_Cells_Annotated.rds")
+B_scd <- readRDS("file_path")
 
 
 
