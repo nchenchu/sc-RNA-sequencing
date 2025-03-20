@@ -4,7 +4,7 @@ library(ineq)
 library(ggplot2)
 
 # Define Output Directory
-output_dir <- "/Users/bigley/Library/CloudStorage/Box-Box/Bigley Lab/Navyasree Chenchu/Chenchu Projects/Results/Combined_Data/"
+output_dir <- "file_path"
 
 # Ensure the output directory exists
 if (!dir.exists(output_dir)) {
