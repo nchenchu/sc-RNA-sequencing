@@ -1,10 +1,10 @@
 library(Seurat)
-setwd("/Volumes/bigley/Active/scRNAseq_DataSets/chenchu/scripts/R_Scripts/")
+setwd("file_path")
 
 library(Seurat)
 
 # Load the Seurat object
-scd <- readRDS("~/Documents/Bigley Lab/Projects/MRV Lupus Model/MRV Lupus scRNAseq/cellcycle_corrected.rds")
+scd <- readRDS("file_path")
 
 # Check if the file loaded correctly
 print(scd)
