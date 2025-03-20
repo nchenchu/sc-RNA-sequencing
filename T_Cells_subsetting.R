@@ -1,9 +1,9 @@
-data <- readRDS("/Users/bigley/Library/CloudStorage/Box-Box/Bigley Lab/Navyasree Chenchu/Chenchu Projects/Chenchu MRV D0 R848/MRV R848 scRNAseq cellcycle_corrected.rds")
+data <- readRDS("file_path")
 
 library(Seurat)
 
 # Open the RDS file and load only metadata
-con <- gzfile("/Users/bigley/Library/CloudStorage/Box-Box/Bigley Lab/Navyasree Chenchu/Chenchu Projects/Chenchu MRV D0 R848/MRV R848 scRNAseq cellcycle_corrected.rds", "rb")
+con <- gzfile("file_path", "rb")
 
 scd_metadata <- readRDS(con)@meta.data
 
@@ -19,20 +19,20 @@ t_cell_barcodes <- rownames(scd_metadata)[scd_metadata$seurat_clusters %in% t_ce
 length(t_cell_barcodes)                         
 
 # Load the full dataset but only keep T cell clusters
-scd <- readRDS("/Users/bigley/Library/CloudStorage/Box-Box/Bigley Lab/Navyasree Chenchu/Chenchu Projects/Chenchu MRV D0 R848/MRV R848 scRNAseq cellcycle_corrected.rds")
+scd <- readRDS("file_path")
 
 # Subset only T cell clusters
 scd_t_cells <- subset(scd, cells = t_cell_barcodes)
 
-write.csv(t_cell_barcodes,"/Users/bigley/Library/CloudStorage/Box-Box/Bigley Lab/Navyasree Chenchu/Chenchu Projects/Chenchu MRV D0 R848/t_cell_barcodes.csv")
+write.csv(t_cell_barcodes,"file_path")
 
 # Save the smaller dataset
-saveRDS(scd_t_cells, "/Users/bigley/Library/CloudStorage/Box-Box/Bigley Lab/Navyasree Chenchu/Chenchu Projects/Chenchu MRV D0 R848/MRV_T_Cells.rds")
+saveRDS(scd_t_cells, "file_path")
 
 # Check the new dataset
 scd_t_cells
 
-write.csv(scd_metadata, "/Users/bigley/Library/CloudStorage/Box-Box/Bigley Lab/Navyasree Chenchu/Chenchu Projects/Chenchu MRV D0 R848/MRV_metadata.csv")
+write.csv(scd_metadata, "file_path")
 
 table(scd_t_cells$seurat_clusters)
 DimPlot(scd_t_cells, reduction = "umap", label = TRUE, pt.size = 0.5)
@@ -99,7 +99,7 @@ library(Seurat)
 library(ggplot2)
 
 # Define Output Directory
-output_dir <- "/Users/bigley/Library/CloudStorage/Box-Box/Bigley Lab/Navyasree Chenchu/Chenchu Projects/Chenchu MRV D0 R848/"
+output_dir <- "file_path/"
 
 # Ensure the output directory exists
 if (!dir.exists(output_dir)) {
@@ -154,6 +154,6 @@ for (gene in features) {
 # Verify counts
 table(scd_t_cells$cell_type)
 
-saveRDS(scd_t_cells, "/Users/bigley/Library/CloudStorage/Box-Box/Bigley Lab/Navyasree Chenchu/Chenchu Projects/Chenchu MRV D0 R848/MRV_T_Cells_Annotated.rds")
+saveRDS(scd_t_cells, "file_path")
 
-write.csv(scd_t_cells@meta.data, "/Users/bigley/Library/CloudStorage/Box-Box/Bigley Lab/Navyasree Chenchu/Chenchu Projects/Chenchu MRV D0 R848/T_Cells.csv", row.names = TRUE)
+write.csv(scd_t_cells@meta.data, "file_path", row.names = TRUE)
