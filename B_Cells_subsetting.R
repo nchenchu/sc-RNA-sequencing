@@ -1,9 +1,9 @@
-data <- readRDS("/Users/bigley/Library/CloudStorage/Box-Box/Bigley Lab/Navyasree Chenchu/Chenchu Projects/Chenchu MRV D0 R848/MRV R848 scRNAseq cellcycle_corrected.rds")
+data <- readRDS("file path")
 
 library(Seurat)
 
 # Open the RDS file and load only metadata
-con <- gzfile("/Users/bigley/Library/CloudStorage/Box-Box/Bigley Lab/Navyasree Chenchu/Chenchu Projects/Chenchu MRV D0 R848/MRV R848 scRNAseq cellcycle_corrected.rds", "rb")
+con <- gzfile("file path")
 scd_metadata <- readRDS(con)@meta.data
 
 # Check metadata structure
@@ -18,18 +18,18 @@ b_cell_barcodes <- rownames(scd_metadata)[scd_metadata$seurat_clusters %in% b_ce
 length(b_cell_barcodes)
 
 # Load the full dataset but only keep B cell clusters
-scd <- readRDS("/Users/bigley/Library/CloudStorage/Box-Box/Bigley Lab/Navyasree Chenchu/Chenchu Projects/Chenchu MRV D0 R848/MRV R848 scRNAseq cellcycle_corrected.rds")
+scd <- readRDS("file path")
 
 # Subset only B cell clusters
 scd_b_cells <- subset(scd, cells = b_cell_barcodes)
 
 # Save the smaller dataset
-saveRDS(scd_b_cells, "/Users/bigley/Library/CloudStorage/Box-Box/Bigley Lab/Navyasree Chenchu/Chenchu Projects/Chenchu MRV D0 R848/MRV_B_Cells.rds")
+saveRDS(scd_b_cells, "file path")
 
 # Check the new dataset
 scd_b_cells
 
-write.csv(scd_metadata, "/Users/bigley/Library/CloudStorage/Box-Box/Bigley Lab/Navyasree Chenchu/Chenchu Projects/Chenchu MRV D0 R848/MRV_metadata_B_Cells.csv")
+write.csv(scd_metadata, "file path")
 
 table(scd_b_cells$seurat_clusters)
 DimPlot(scd_b_cells, reduction = "umap", label = TRUE, pt.size = 0.5)
@@ -92,7 +92,7 @@ library(Seurat)
 library(ggplot2)
 
 # Define Output Directory
-output_dir <- "/Users/bigley/Library/CloudStorage/Box-Box/Bigley Lab/Navyasree Chenchu/Chenchu Projects/Chenchu MRV D0 R848/"
+output_dir <- "file path"
 
 # Ensure the output directory exists
 if (!dir.exists(output_dir)) {
@@ -143,9 +143,9 @@ for (gene in features) {
 # Verify counts
 table(scd_b_cells$cell_type)
 
-saveRDS(scd_b_cells, "/Users/bigley/Library/CloudStorage/Box-Box/Bigley Lab/Navyasree Chenchu/Chenchu Projects/Chenchu MRV D0 R848/MRV_B_Cells_Annotated.rds")
+saveRDS(scd_b_cells, "file path")
 
-write.csv(scd_b_cells@meta.data, "/Users/bigley/Library/CloudStorage/Box-Box/Bigley Lab/Navyasree Chenchu/Chenchu Projects/Chenchu MRV D0 R848/B_Cells.csv", row.names = TRUE)
+write.csv(scd_b_cells@meta.data, "file path", row.names = TRUE)
 
 
 
