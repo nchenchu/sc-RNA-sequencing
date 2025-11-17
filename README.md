@@ -31,7 +31,9 @@ Packages include:
 - optparse
 - patchwork
 - ineq
-
+- ggpubr
+- pheatmap
+- reshape2
 
 You can install them manually in R or use a `requirements.R` installer script.
 
