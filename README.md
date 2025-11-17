@@ -30,6 +30,8 @@ Packages include:
 - readr  
 - optparse
 - patchwork
+- ineq
+
 
 You can install them manually in R or use a `requirements.R` installer script.
 
