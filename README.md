@@ -28,7 +28,8 @@ Packages include:
 - ggplot2  
 - data.table  
 - readr  
-- optparse  
+- optparse
+- patchwork
 
 You can install them manually in R or use a `requirements.R` installer script.
 
