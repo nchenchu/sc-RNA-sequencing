@@ -34,6 +34,8 @@ Packages include:
 - ggpubr
 - pheatmap
 - reshape2
+- ggpubr
+- devtools
 
 You can install them manually in R or use a `requirements.R` installer script.
 
